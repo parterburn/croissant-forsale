@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
 var basicAuth = require('node-basicauth');
 
-app.use(basicAuth(process.env.USERNAME, process.env.PASSWORD));
+app.use(basicAuth({ "cha-ching" : process.env.PASSWORD }));
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
 
