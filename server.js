@@ -24,11 +24,12 @@ app.post('/test-payment', function(request, response){
 });
 
 app.post('/stripe-webhook', function(request, response){
-	console.log(request.body)
 	if (request.body.type === 'charge.succeeded') {
-		console.log(request.body.data.object);
-		emitter.emit('chargeSucceeded', request.body.data.object);
+		emitter.emit('chargeSucceeded', "Success");
 	}
+  if (request.body.type === 'charge.failed') {
+    emitter.emit('chargeFailed', "Failed");
+  }  
 	response.send('OK');
 });
 
@@ -37,16 +38,21 @@ function chargeServer(client, con) {
 		if (typeof client['chargeSucceeded'] === 'function') {
 			emitter.on('chargeSucceeded', client['chargeSucceeded']);
 		}
+    if (typeof client['chargeFailed'] === 'function') {
+      emitter.on('chargeFailed', client['chargeFailed']);
+    }    
     });
 
     con.on('end', function () {
         if (typeof client['chargeSucceeded'] === 'function') {
             emitter.removeListener('chargeSucceeded', client['chargeSucceeded']);
         }
+        if (typeof client['chargeFailed'] === 'function') {
+            emitter.removeListener('chargeFailed', client['chargeFailed']);
+        }        
     });
 }
 
-console.log("Starting on port: "+process.env.PORT)
 app.listen(process.env.PORT || 8080);
 
 // then just pass the server app handle to .listen()!
