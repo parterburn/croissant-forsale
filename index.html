@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>Cha Chinger</title>
+<meta name="robots" content="noindex">
 <script src="/dnode.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -17,8 +18,9 @@
 </script>
 </head>
 <body>
-Successful: <audio id="cash_register" src="/cash_register.wav" preload></audio>
-<br><br><br>
-Failed: <audio id="denied" src="/denied.wav" preload></audio>
+<br><br>
+<h3>Successful: <audio controls id="cash_register" preload="auto"><source src="/cash_register.wav" type="audio/wave"></audio></h3>
+<br><br>
+<h3>Failed: <audio controls id="denied" preload="auto"><source src="/denied.wav" type="audio/wave"></audio></h3>
 </body>
 </html>
