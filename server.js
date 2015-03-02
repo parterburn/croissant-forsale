@@ -3,9 +3,10 @@ var emitter = new EventEmitter;
 
 var express = require('express');
 var app = express.createServer();
-var basicAuth = require('basic-auth-connect');
 
-app.use(basicAuth(process.env.USERNAME, process.env.PASSWORD));
+// Authenticator
+app.use(express.basicAuth(process.env.USERNAME, process.env.PASSWORD));
+
 app.use(express.static(__dirname));
 app.use(express.bodyParser())
 
