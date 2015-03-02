@@ -5,13 +5,34 @@
     <meta name="robots" content="noindex">
     <script src="/dnode.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <style>
+        body {
+            font-family: 'Lucida Grand', Helvetica, Arial, sans-serif;
+        }
+        #charges {
+            margin: 20px;
+        }
+        .failed-charge {
+            color:red;
+        }
+    </style>
     <script type="text/javascript">
     $(function() {
         DNode(function() {
             this.chargeSucceeded = function(charge) {
+
+                var chargeLi = $('<li></li>');
+                $(chargeLi).text("CHARGE SUCCESSFUL for $"+(charge.amount/100).toFixed(2) +" with description: "+charge.description);
+                $('#charges').prepend(chargeLi);
+
                 document.getElementById('cash_register').play();
             };
             this.chargeFailed = function(charge) {
+
+                var chargeLi = $('<li class="failed-charge"></li>');
+                $(chargeLi).text("CHARGE FAILED for $"+(charge.amount/100).toFixed(2) +" with description: "+charge.description);
+                $('#charges').prepend(chargeLi);
+
                 document.getElementById('denied').play();
             };
         }).connect();
@@ -25,6 +46,8 @@
         <h1>Successful: <audio id="cash_register" preload="auto" controls="yes" src="cash_register.wav"></audio></h1>
         <h1>Failed: <audio id="denied" preload="auto" controls="yes" src="denied.wav"></audio></h1>
     </center>
+    <br><br>
+    <ul id="charges"></ul>
 </body>
 
 </html>

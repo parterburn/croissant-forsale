@@ -11,11 +11,14 @@ app.use(express.static(__dirname));
 app.use(express.bodyParser())
 
 app.post('/stripe-webhook', function(request, response){
+  console.log(request.body);
 	if (request.body.type === 'charge.succeeded') {
-		emitter.emit('chargeSucceeded', "Success");
+    console.log(request.body.data.object);
+		emitter.emit('chargeSucceeded', request.body.data.object);
 	}
   if (request.body.type === 'charge.failed') {
-    emitter.emit('chargeFailed', "Failed");
+    console.log(request.body.data.object);
+    emitter.emit('chargeFailed', request.body.data.object);
   }  
 	response.send('OK');
 });
