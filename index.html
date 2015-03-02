@@ -13,17 +13,21 @@
             margin: 20px;
         }
         .failed-charge {
-            color:red;
+            color:darkRed;
+            margin:5px;
+        }
+        .successful-charge {
+            color: darkGreen;
+            margin:5px;
         }
     </style>
     <script type="text/javascript">
-        var host = location.origin.replace(/^http/, 'ws')
+        var host = location.origin.replace(/^http/, 'ws');
         var socket = io(host);
         socket.on('chargeSucceeded', function (charge) {
-            var chargeLi = $('<li></li>');
+            var chargeLi = $('<li class="successful-charge"></li>');
             $(chargeLi).text("CHARGE SUCCESSFUL for $"+(charge.amount/100).toFixed(2));
             $('#charges').prepend(chargeLi);
-
             document.getElementById('cash_register').play();
         });
 
@@ -31,7 +35,6 @@
             var chargeLi = $('<li class="failed-charge"></li>');
             $(chargeLi).text("CHARGE FAILED for $"+(charge.amount/100).toFixed(2));
             $('#charges').prepend(chargeLi);
-
             document.getElementById('denied').play();
         });    
     </script>

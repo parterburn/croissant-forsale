@@ -1,13 +1,13 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
+var basicAuth = require('node-basicauth');
 
-server.listen(process.env.PORT || 8080);
-
+app.use(basicAuth(process.env.USERNAME, process.env.PASSWORD));
+app.use(express.static(__dirname));
 app.use(bodyParser.json());
-
-app.get('/', function (req, res) { res.sendfile(__dirname + '/index.html'); });
 
 app.post('/stripe-webhook', function(request, response){
   if (request.body.type === 'charge.succeeded') {
@@ -22,3 +22,5 @@ app.post('/stripe-webhook', function(request, response){
 io.on('connection', function (socket) {
   console.log("Connected!");
 });
+
+server.listen(process.env.PORT || 8080);

@@ -4,7 +4,8 @@
   "dependencies": {
     "socket.io": "latest",
     "express": "latest",
-    "body-parser": "latest"
+    "body-parser": "latest",
+    "node-basicauth": "latest"
   },
   "engines": {
     "node": "0.10.x"
