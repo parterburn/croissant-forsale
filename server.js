@@ -22,13 +22,11 @@ app.post('/stripe-webhook', function(request, response){
   response.send('OK');
 });
 
-app.post('/heroku-webhook', function(request, response){
-  io.emit('trainDone', "Choo Choo");
-  response.send('OK');
-});
-
 app.post('/circle-webhook', function(request, response){
+  console.log(request);
+  console.log(request.body);
   io.emit('trainCrashed', "Choo Choo");
+  io.emit('trainDone', "Choo Choo");
   response.send('OK');
 });
 
