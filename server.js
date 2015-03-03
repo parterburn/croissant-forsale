@@ -15,7 +15,15 @@ app.post('/stripe-webhook', function(request, response){
   }
   if (request.body.type === 'charge.failed') {
     io.emit('chargeFailed', request.body.data.object);
-  }  
+  }
+  if (request.body.type === 'charge.refunded') {
+    io.emit('chargeRefunded', request.body.data.object);
+  }
+  response.send('OK');
+});
+
+app.post('/heroku-webhook', function(request, response){
+  io.emit('trainLeaving', "Choo Choo");
   response.send('OK');
 });
 
