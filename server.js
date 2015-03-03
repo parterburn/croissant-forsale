@@ -28,7 +28,6 @@ app.post('/heroku-webhook', function(request, response){
 });
 
 app.post('/circle-webhook', function(request, response){
-  io.emit('trainLeaving', "Choo Choo");
   io.emit('trainCrashed', "Choo Choo");
   response.send('OK');
 });
