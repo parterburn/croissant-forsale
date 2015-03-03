@@ -47,14 +47,14 @@
 
         socket.on('trainDone', function (charge) {
             var chargeLi = $('<li class="train-ride"></li>');
-            $(chargeLi).text("New deploy for brandfolder-production");
+            $(chargeLi).text("CIRCLECI: brandfolder-production deployed");
             $('#charges').prepend(chargeLi);
             document.getElementById('choochoo').play();
         });
 
         socket.on('trainCrashed', function (charge) {
             var chargeLi = $('<li class="train-ride"></li>');
-            $(chargeLi).text("Train crashed while deploying brandfolder-production");
+            $(chargeLi).text("CIRCLECLI: FAILED deploying brandfolder-production");
             $('#charges').prepend(chargeLi);
             document.getElementById('crashed').play();
         });        
