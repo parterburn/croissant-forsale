@@ -25,8 +25,11 @@ app.post('/stripe-webhook', function(request, response){
 app.post('/circle-webhook', function(request, response){
   console.log(request);
   console.log(request.body);
-  io.emit('trainCrashed', "Choo Choo");
-  io.emit('trainDone', "Choo Choo");
+  if (request.body.payload.outcome === "success") {
+    io.emit('trainDone', "Choo Choo");    
+  } else {
+    io.emit('trainCrashed', "Choo Choo");
+  }
   response.send('OK');
 });
 
