@@ -43,8 +43,14 @@
 <body>
     <center>
         <br>
-        <h1>Successful: <audio id="cash_register" preload="auto" controls="yes" src="cash_register.wav"></audio></h1>
-        <h1>Failed: <audio id="denied" preload="auto" controls="yes" src="denied.wav"></audio></h1>
+        <h1>Successful: <audio id="cash_register" preload="auto" controls="yes" src="cash_register.wav">
+          <source src="audio/cash_register.wav" type="audio/wave">
+          <source src="audio/cash_register.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Failed: <audio id="denied" preload="auto" controls="yes">
+          <source src="audio/denied.wav" type="audio/wave">
+          <source src="audio/denied.mp3" type="audio/mpeg">
+        </audio></h1>
     </center>
     <br>
     <ul id="charges"></ul>
