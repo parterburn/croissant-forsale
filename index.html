@@ -120,6 +120,10 @@
             <input type="text" name="url" placeholder="https://url-to/sound.mp3">
             <input type="submit" value="Play">
         </form>
+        <form method="get" action="/speak">
+            <input type="text" name="words" placeholder="Hello World">
+            <input type="submit" value="Say">
+        </form>        
         <h1>Choo Choo: <audio id="choochoo" preload="auto" controls="yes">
           <source src="audio/choochoo.wav" type="audio/wave">
           <source src="audio/choochoo.mp3" type="audio/mpeg">
