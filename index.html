@@ -105,8 +105,8 @@
             var audio = new Audio(decodeURIComponent(url));
             audio.controls = true;
             chargeLi = $('<li class="any-player"></li>');
-            chargeLi.innerHTML(audio);
-            $('#charges').prepend(chargeLi);       
+            chargeLi.innerHTML = audio;
+            $('#charges').prepend(chargeLi);
             audio.play();
         });
 
@@ -118,7 +118,7 @@
             var audio = new Audio(url);
             audio.controls = true;
             chargeLi = $('<li class="any-player"></li>');
-            chargeLi.innerHTML(audio);
+            chargeLi.innerHTML = audio;
             $('#charges').prepend(chargeLi);
             audio.play();
         });
