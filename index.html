@@ -102,8 +102,8 @@
             var chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Played: "+url);
             $('#charges').prepend(chargeLi);
-            $("#anysource").attr("src", decodeURIComponent(url));
-            $("#any").play();
+            var audio = new Audio(decodeURIComponent(url));
+            audio.play();
         });
 
         socket.on('speak', function (words) {
@@ -111,8 +111,8 @@
             $(chargeLi).text("Spoke: "+words);
             $('#charges').prepend(chargeLi);
             var url = "http://translate.google.com/translate_tts?ie=UTF-8&q="+words+"&tl=en&total=1&idx=0&textlen=23&prev=input";
-            $("#anysource").attr("src", url);
-            $("#any").play();
+            var audio = new Audio(url);
+            audio.play();
         });
 
     </script>
