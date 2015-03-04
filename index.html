@@ -26,6 +26,16 @@
             color: darkGreen;
             margin: 5px;
         }
+        a {
+            display:block;
+            margin:5px;
+            text-decoration: none;
+            color:#333333;
+        }
+        a:hover {
+            text-decoration: underline;
+            color:black;
+        }        
         input {
             border : solid 2px #DDDDDD;
             border-radius : 3px;
@@ -113,7 +123,6 @@
         <br>
         <br>
         <br>
-        <a href="/refresh" style="text-decoration: none;color:#CCCCCC">Refresh All Receivers</a><br>
         <form method="get" action="/any-url">
             <h1>
                 Play: 
@@ -128,6 +137,13 @@
             <input type="submit" value="Say">
             </h1>
         </form>
+        <a href="/any-url?url=https%3A%2F%2Fcha-ching%3Al0ckd0wn%40brandfolder-cha-ching.herokuapp.com%2Faudio%2Fcash_register.mp3">Play Cha Ching</a>
+        <a href="/any-url?url=https%3A%2F%2Fcha-ching%3Al0ckd0wn%40brandfolder-cha-ching.herokuapp.com%2Faudio%2Fdenied.mp3">Play Denied</a>
+        <a href="/any-url?url=https%3A%2F%2Fcha-ching%3Al0ckd0wn%40brandfolder-cha-ching.herokuapp.com%2Faudio%2Fchoochoo.mp3">Play Choo Choo</a>
+        <a href="/any-url?url=https%3A%2F%2Fcha-ching%3Al0ckd0wn%40brandfolder-cha-ching.herokuapp.com%2Faudio%2Fcrash.mp3">Play Crash</a>
+        <br>
+        <a href="/refresh">Refresh All Receivers</a>
+
         <div style="display:none;">
             <h1>Choo Choo: <audio id="choochoo" preload="auto" controls="yes">
               <source src="audio/choochoo.wav" type="audio/wave">
