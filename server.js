@@ -43,9 +43,15 @@ app.get('/refresh', function(request, response){
   response.send('OK');
 });
 
-app.get('/any-webhook', function(request, response){
+app.get('/any-url', function(request, response){
   console.log(request.query.url);
-  io.emit('any', request.query.url);
+  io.emit('anyURL', request.query.url);
+  response.send('Now listen...');
+});
+
+app.get('/any-url', function(request, response){
+  console.log(request.query.words);
+  io.emit('speak', request.query.words);
   response.send('Now listen...');
 });
 
