@@ -33,7 +33,12 @@ app.post('/circle-webhook', function(request, response){
   response.send('OK');
 });
 
-app.post('/heroku-webhook', function(request, response){
+app.post('/refresh', function(request, response){
+  io.emit('deploy', "New Deploy");
+  response.send('OK');
+});
+
+app.get('/refresh', function(request, response){
   io.emit('deploy', "New Deploy");
   response.send('OK');
 });
