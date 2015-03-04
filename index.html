@@ -86,9 +86,13 @@
             document.getElementById('crashed').play();
         });
 
-        socket.on('refresh', function (data) {
+        socket.on('deploy', function (data) {
             setTimeout(function() { location.reload(); }, 30000);
         });
+
+        socket.on('refresh', function (data) {
+            location.reload();
+        });        
 
         socket.on('anyURL', function (url) {
             var chargeLi = $('<li class="play-anything"></li>');

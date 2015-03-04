@@ -38,6 +38,11 @@ app.post('/refresh', function(request, response){
   response.send('OK');
 });
 
+app.get('/deploy', function(request, response){
+  io.emit('refresh', "Deployed!");
+  response.send('OK');
+});
+
 app.get('/refresh', function(request, response){
   io.emit('refresh', "Refreshed!");
   response.send('OK');
