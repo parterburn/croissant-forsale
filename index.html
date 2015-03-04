@@ -96,14 +96,15 @@
 
         socket.on('refresh', function (data) {
             location.reload();
-        });        
+        });
 
         socket.on('anyURL', function (url) {
             var chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Played: "+url);
             $('#charges').prepend(chargeLi);
-            var audio = new Audio(decodeURIComponent(url));
-            audio.play();
+            var $audio = $("#any");
+            $audio.attr("src", decodeURIComponent(url));
+            audio.play();            
         });
 
         socket.on('speak', function (words) {
@@ -111,7 +112,8 @@
             $(chargeLi).text("Spoke: "+words);
             $('#charges').prepend(chargeLi);
             var url = "http://translate.google.com/translate_tts?ie=UTF-8&q="+decodeURIComponent(words)+"&tl=en&total=1&idx=0&textlen=23&prev=input";
-            var audio = new Audio(url);
+            var $audio = $("#any");
+            $audio.attr("src", url);
             audio.play();
         });
 
@@ -144,24 +146,25 @@
         <br>
         <a href="/refresh">Refresh All Receivers</a>
 
-        <div>
-            <h1>Choo Choo: <audio id="choochoo" preload="auto" controls="yes">
-              <source src="audio/choochoo.wav" type="audio/wave">
-              <source src="audio/choochoo.mp3" type="audio/mpeg">
-            </audio></h1>
-            <h1>Crash: <audio id="crashed" preload="auto" controls="yes">
-              <source src="audio/crash.wav" type="audio/wave">
-              <source src="audio/crash.mp3" type="audio/mpeg">
-            </audio></h1>
-            <h1>Cha-ching: <audio id="cash_register" preload="auto" controls="yes">
-              <source src="audio/cash_register.wav" type="audio/wave">
-              <source src="audio/cash_register.mp3" type="audio/mpeg">
-            </audio></h1>
-            <h1>Fail: <audio id="denied" preload="auto" controls="yes">
-              <source src="audio/denied.wav" type="audio/wave">
-              <source src="audio/denied.mp3" type="audio/mpeg">
-            </audio></h1>
-        </div>
+        <h1>Choo Choo: <audio id="choochoo" preload="auto" controls="yes">
+          <source src="audio/choochoo.wav" type="audio/wave">
+          <source src="audio/choochoo.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Crash: <audio id="crashed" preload="auto" controls="yes">
+          <source src="audio/crash.wav" type="audio/wave">
+          <source src="audio/crash.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Cha-ching: <audio id="cash_register" preload="auto" controls="yes">
+          <source src="audio/cash_register.wav" type="audio/wave">
+          <source src="audio/cash_register.mp3" type="audio/mpeg">
+        </audio></h1>
+        <h1>Fail: <audio id="denied" preload="auto" controls="yes">
+          <source src="audio/denied.wav" type="audio/wave">
+          <source src="audio/denied.mp3" type="audio/mpeg">
+        </audio></h1>
+
+        <h1>Any: <audio id="any" preload="auto" controls="yes"></audio></h1>
+
     </center>
     <br>
     <ul id="charges"></ul>
