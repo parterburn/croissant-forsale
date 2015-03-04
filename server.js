@@ -39,7 +39,7 @@ app.post('/refresh', function(request, response){
 });
 
 app.get('/refresh', function(request, response){
-  io.emit('deploy', "New Deploy");
+  io.emit('refresh', "Refreshed!");
   response.send('OK');
 });
 

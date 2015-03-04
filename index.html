@@ -86,8 +86,8 @@
             document.getElementById('crashed').play();
         });
 
-        socket.on('deploy', function (data) {
-            location.reload();
+        socket.on('refresh', function (data) {
+            setTimeout(function() { location.reload(); }, 30000);
         });
 
         socket.on('any', function (url) {
