@@ -60,6 +60,10 @@
             $(chargeLi).text("CIRCLECLI: FAILED deploying brandfolder-production");
             $('#charges').prepend(chargeLi);
             document.getElementById('crashed').play();
+        });
+
+        socket.on('deploy', function (charge) {
+            location.reload();
         });        
     </script>
 </head>

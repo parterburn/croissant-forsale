@@ -33,6 +33,11 @@ app.post('/circle-webhook', function(request, response){
   response.send('OK');
 });
 
+app.post('/heroku-webhook', function(request, response){
+  io.emit('deploy', "New Deploy");
+  response.send('OK');
+});
+
 io.on('connection', function (socket) {
   console.log("Connected!");
 });
