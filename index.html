@@ -99,28 +99,28 @@
         });
 
         socket.on('anyURL', function (url) {
-            var chargeLi = $('<li class="play-anything"></li>');
-            $(chargeLi).text("Played: "+url);
-            $('#charges').prepend(chargeLi);
             var audio = new Audio(decodeURIComponent(url));
             audio.controls = true;
-            chargeLi = $('<li class="any-player"></li>');
+            var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#charges').prepend(chargeLi);
             audio.play();
+            chargeLi = $('<li class="play-anything"></li>');
+            $(chargeLi).text("Played: "+url);
+            $('#charges').prepend(chargeLi);            
         });
 
         socket.on('speak', function (words) {
-            var chargeLi = $('<li class="play-anything"></li>');
-            $(chargeLi).text("Spoke: "+words);
-            $('#charges').prepend(chargeLi);
             var url = "http://translate.google.com/translate_tts?ie=UTF-8&q="+words+"&tl=en&total=1&idx=0&textlen=23&prev=input";
             var audio = new Audio(url);
             audio.controls = true;
-            chargeLi = $('<li class="any-player"></li>');
+            var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#charges').prepend(chargeLi);
             audio.play();
+            chargeLi = $('<li class="play-anything"></li>');
+            $(chargeLi).text("Spoke: "+words);
+            $('#charges').prepend(chargeLi);
         });
 
     </script>
