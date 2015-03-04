@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
 var basicAuth = require('node-basicauth');
 
-app.use(basicAuth({ "cha-ching" : process.env.PASSWORD }));
+//app.use(basicAuth({ "cha-ching" : process.env.PASSWORD }));
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
 
@@ -36,6 +36,11 @@ app.post('/circle-webhook', function(request, response){
 app.post('/heroku-webhook', function(request, response){
   io.emit('deploy', "New Deploy");
   response.send('OK');
+});
+
+app.post('/any-webhook', function(request, response){
+  io.emit('any', request.body.url);
+  response.send('Now listen...');
 });
 
 io.on('connection', function (socket) {

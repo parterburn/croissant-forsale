@@ -13,15 +13,40 @@
             margin: 20px;
         }
         .train-ride {
-            margin:5px;
+            margin: 5px;
+        }
+        .play-anything {
+            margin: 5px;
         }
         .failed-charge {
-            color:darkRed;
-            margin:5px;
+            color: darkRed;
+            margin: 5px;
         }
         .successful-charge {
             color: darkGreen;
-            margin:5px;
+            margin: 5px;
+        }
+        input {
+            border : solid 2px #ffffff;
+            border-radius : 3px;
+            moz-border-radius : 3px;
+            -webkit-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+            -moz-box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+            box-shadow : 0px 0px 5px rgba(0,0,0,1.0);
+            font-size : 20px;
+            color : #d1ff6e;
+            padding : 5px 10px;
+            background : #053494;
+            background : -webkit-gradient(linear, left top, left bottom, color-stop(0%,#053494), color-stop(100%,#addbff));
+            background : -moz-linear-gradient(top, #053494 0%, #addbff 100%);
+            background : -webkit-linear-gradient(top, #053494 0%, #addbff 100%);
+            background : -o-linear-gradient(top, #053494 0%, #addbff 100%);
+            background : -ms-linear-gradient(top, #053494 0%, #addbff 100%);
+            background : linear-gradient(top, #053494 0%, #addbff 100%);
+            filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#053494', endColorstr='#addbff',GradientType=0 );
+        }
+        input[type=text] {
+            width: 320px;
         }
     </style>
     <script type="text/javascript">
@@ -55,16 +80,24 @@
             document.getElementById('choochoo').play();
         });
 
-        socket.on('trainCrashed', function (charge) {
+        socket.on('trainCrashed', function (data) {
             var chargeLi = $('<li class="train-ride"></li>');
             $(chargeLi).text("CIRCLECLI: FAILED deploying brandfolder-production");
             $('#charges').prepend(chargeLi);
             document.getElementById('crashed').play();
         });
 
-        socket.on('deploy', function (charge) {
+        socket.on('deploy', function (data) {
             location.reload();
-        });        
+        });
+
+        socket.on('any', function (url) {
+            var chargeLi = $('<li class="play-anything"></li>');
+            $(chargeLi).text("Played: "+url);
+            $('#charges').prepend(chargeLi);
+            var audio = new Audio(url);
+            audio.play();
+        });
     </script>
 </head>
 
@@ -73,6 +106,10 @@
         <br>
         <br>
         <br>
+        <form method="post" action="/any-webhook">
+            <input type="text" name="url" placeholder="https://url-to/sound.wav">
+            <input type="submit" value="Play">
+        </form>
         <h1>Choo Choo: <audio id="choochoo" preload="auto" controls="yes">
           <source src="audio/choochoo.wav" type="audio/wave">
           <source src="audio/choochoo.mp3" type="audio/mpeg">
