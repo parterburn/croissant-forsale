@@ -43,7 +43,6 @@
             background : -o-linear-gradient(top, #053494 0%, #addbff 100%);
             background : -ms-linear-gradient(top, #053494 0%, #addbff 100%);
             background : linear-gradient(top, #053494 0%, #addbff 100%);
-            filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#053494', endColorstr='#addbff',GradientType=0 );
         }
         input[type=text] {
             width: 320px;
@@ -95,7 +94,7 @@
             var chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Played: "+url);
             $('#charges').prepend(chargeLi);
-            var audio = new Audio(url);
+            var audio = new Audio(decodeURIComponent(url));
             audio.play();
         });
     </script>
