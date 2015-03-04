@@ -50,14 +50,14 @@ app.get('/any-url', function(request, response){
 });
 
 app.get('/speak', function(request, response){
-  console.log(request.body.text);
-  io.emit('speak', request.body.text);
+  console.log(request.query.words);
+  io.emit('speak', request.query.words);
   response.send('Now listen...');
 });
 
 app.post('/speak', function(request, response){
-  console.log(request.query.words);
-  io.emit('speak', request.query.words);
+  console.log(request.body.text);
+  io.emit('speak', request.body.text);
   response.send('Now listen...');
 });
 
