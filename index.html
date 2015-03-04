@@ -87,6 +87,9 @@
         });
 
         socket.on('deploy', function (data) {
+            var chargeLi = $('<li class="train-ride"></li>');
+            $(chargeLi).text("New deploy; refreshing in 30 seconds");
+            $('#charges').prepend(chargeLi);            
             setTimeout(function() { location.reload(); }, 30000);
         });
 
