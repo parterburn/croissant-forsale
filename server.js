@@ -38,8 +38,9 @@ app.post('/heroku-webhook', function(request, response){
   response.send('OK');
 });
 
-app.post('/any-webhook', function(request, response){
-  io.emit('any', request.body.url);
+app.get('/any-webhook', function(request, response){
+  console.log(request.query.url);
+  io.emit('any', request.query.url);
   response.send('Now listen...');
 });
 
