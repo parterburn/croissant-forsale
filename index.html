@@ -102,9 +102,8 @@
             var chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Played: "+url);
             $('#charges').prepend(chargeLi);
-            var audio = document.getElementById("any"); 
-            audio.attr("src", decodeURIComponent(url));
-            audio.play();            
+            $("#anysource").attr("src", decodeURIComponent(url));
+            $("#any").play();
         });
 
         socket.on('speak', function (words) {
@@ -112,9 +111,8 @@
             $(chargeLi).text("Spoke: "+words);
             $('#charges').prepend(chargeLi);
             var url = "http://translate.google.com/translate_tts?ie=UTF-8&q="+words+"&tl=en&total=1&idx=0&textlen=23&prev=input";
-            var audio = document.getElementById("any"); 
-            audio.attr("src", url);
-            audio.play();
+            $("#anysource").attr("src", url);
+            $("#any").play();
         });
 
     </script>
@@ -163,7 +161,11 @@
           <source src="audio/denied.mp3" type="audio/mpeg">
         </audio></h1>
 
-        <h1>Any: <audio id="any" preload="auto" controls="yes"></audio></h1>
+        <h1>Any:
+        <audio id="any" controls="yes">
+            <source src="" id="anysource">
+            Your browser does not support the audio tag.    
+        </audio></h1>
 
     </center>
     <br>
