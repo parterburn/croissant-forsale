@@ -44,15 +44,23 @@ app.get('/refresh', function(request, response){
 });
 
 app.get('/any-url', function(request, response){
-  console.log(request.query.url);
-  io.emit('anyURL', request.query.url);
-  response.send('Now listen...');
+  var show_text;
+  var url;
+  if (request.query.user_name) {
+    show_text = request.query.user_name + " played: " + request.query.text;
+    url = request.query.text;
+  } else {
+    show_text = request.query.url;
+    url = request.query.url;
+  }
+  io.emit('anyURL', url);
+  response.send(show_text);
 });
 
 app.get('/speak', function(request, response){
   var show_text;
   if (request.query.user_name) {
-    show_text = "@" + request.query.user_name + ": " + request.query.text;
+    show_text = request.query.user_name + " said: " + request.query.text;
   } else {
     show_text = request.query.text;
   }
