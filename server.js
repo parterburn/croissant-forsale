@@ -50,6 +50,8 @@ app.get('/any-url', function(request, response){
 });
 
 app.get('/speak', function(request, response){
+  console.log(request);
+  console.log(request.query.user_name);
   var show_text;
   if (request.query.user_name) {
     show_text = "@" + request.query.user_name + ": " + request.query.text;
