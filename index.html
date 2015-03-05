@@ -108,6 +108,7 @@
         socket.on('anyURL', function (url) {
             var audio = new Audio(decodeURIComponent(url));
             audio.controls = true;
+            if ($('audio').first().prop('volume')) { audio.volume = $('audio').first().prop('volume'); }
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#charges').prepend(chargeLi);
@@ -118,9 +119,10 @@
         });
 
         socket.on('speak', function (text) {
-            var url = "http://translate.google.com/translate_tts?ie=UTF-8&q="+encodeURIComponent(text)+"&tl=en&total=1&idx=0&textlen=23&prev=input";
+            var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=en-us&q="+encodeURIComponent(text);
             var audio = new Audio(url);
             audio.controls = true;
+            if ($('audio').first().prop('volume')) { audio.volume = $('audio').first().prop('volume'); }
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#charges').prepend(chargeLi);
@@ -129,6 +131,15 @@
             $(chargeLi).text("Spoke: "+text);
             $('#charges').prepend(chargeLi);
         });
+
+        socket.on('volume', function (volume) {
+            $('audio').prop('volume',parseFloat(volume));
+        });
+
+        // remove elements so the page doesn't get too big in memory
+        setTimeout(function() {
+            $("li").remove();
+        }, 30000);
 
     </script>
 </head>
@@ -158,6 +169,7 @@
         <a href="/any-url?url=https%3A%2F%2Fcha-ching%3Al0ckd0wn%40brandfolder-cha-ching.herokuapp.com%2Faudio%2Fcrash.mp3">Play Crash</a><br>
         <br>
         <a href="/refresh">Refresh All Receivers</a><br><br>
+        <a href="/volume?text=0.5">Volume</a>   
 
         <h1>Choo Choo: <audio id="choochoo" preload="auto" controls="yes">
           <source src="audio/choochoo.wav" type="audio/wave">

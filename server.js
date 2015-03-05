@@ -22,6 +22,11 @@ app.post('/stripe-webhook', function(request, response){
   response.send('OK');
 });
 
+app.get('/volume', function(request, response){
+  io.emit('volume', request.query.text);
+  response.send('OK');
+});
+
 app.get('/payment', function(request, response){
   io.emit('chargeSucceeded', "Cha-ching!");
   response.send('OK');
