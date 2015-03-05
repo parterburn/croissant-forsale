@@ -110,8 +110,8 @@
             $('#charges').prepend(chargeLi);            
         });
 
-        socket.on('speak', function (words) {
-            var url = "http://translate.google.com/translate_tts?ie=UTF-8&q="+words+"&tl=en&total=1&idx=0&textlen=23&prev=input";
+        socket.on('speak', function (text) {
+            var url = "http://translate.google.com/translate_tts?ie=UTF-8&q="+text+"&tl=en&total=1&idx=0&textlen=23&prev=input";
             var audio = new Audio(url);
             audio.controls = true;
             var chargeLi = $('<li class="any-player"></li>');
@@ -119,7 +119,7 @@
             $('#charges').prepend(chargeLi);
             $(".any-player audio")[0].play()
             chargeLi = $('<li class="play-anything"></li>');
-            $(chargeLi).text("Spoke: "+words);
+            $(chargeLi).text("Spoke: "+text);
             $('#charges').prepend(chargeLi);
         });
 
@@ -141,7 +141,7 @@
         <form method="get" action="/speak">
             <h1>
             Speak: 
-            <input type="text" name="words" placeholder="Hello World">
+            <input type="text" name="text" placeholder="Hello World">
             <input type="submit" value="Say">
             </h1>
         </form>
