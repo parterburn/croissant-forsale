@@ -133,7 +133,16 @@
         });
 
         socket.on('volume', function (volume) {
-            $('audio').prop('volume',parseFloat(volume));
+            if (volume === "mute") {
+                volume = 0;
+            } else if (volume === "up") {
+                volume = $('audio').prop('volume') + 0.1;
+            } else if (volume === "down") {
+                volume = $('audio').prop('volume') - 0.1;
+            } else {
+                volume = parseFloat(volume);
+            }
+            $('audio').prop('volume',volume);
         });
 
         // remove elements so the page doesn't get too big in memory

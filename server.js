@@ -30,8 +30,9 @@ app.post('/stripe-webhook', function(request, response){
 });
 
 app.get('/volume', function(request, response){
-  io.emit('volume', request.query.text);
-  response.send('Volume set to ' + request.query.text);
+  var volume = decodeURIComponent(request.query.text);
+  io.emit('volume', volume);
+  response.send('Volume set to ' + volume);
 });
 
 app.get('/payment', function(request, response){
