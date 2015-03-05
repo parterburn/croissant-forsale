@@ -69,28 +69,21 @@ app.get('/refresh', function(request, response){
 });
 
 app.get('/any-url', function(request, response){
-  var show_text;
+  console.log(request.query);
   var url;
-  if (request.query.user_name) {
-    show_text = request.query.user_name + " played: " + request.query.text;
+  if (request.query.text) {
     url = request.query.text;
   } else {
-    show_text = request.query.url;
     url = request.query.url;
   }
   io.emit('anyURL', url);
-  response.send(show_text);
+  response.send(url);
 });
 
 app.get('/speak', function(request, response){
-  var show_text;
-  if (request.query.user_name) {
-    show_text = request.query.user_name + " said: " + request.query.text;
-  } else {
-    show_text = request.query.text;
-  }
+  console.log(request.query);
   io.emit('speak', request.query.text);
-  response.send(show_text);
+  response.send(request.query.text);
 });
 
 io.on('connection', function (socket) {
