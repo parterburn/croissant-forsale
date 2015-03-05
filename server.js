@@ -37,6 +37,11 @@ app.get('/choo-choo', function(request, response){
   response.send('OK');
 });
 
+app.get('/applause', function(request, response){
+  io.emit('applause', "Yay!");
+  response.send('OK');
+});
+
 app.post('/circle-webhook', function(request, response){
   if (request.body.payload.branch === "master") {
     if (request.body.payload.outcome === "success") {

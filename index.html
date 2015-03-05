@@ -75,17 +75,24 @@
 
         socket.on('trainDone', function (charge) {
             var chargeLi = $('<li class="train-ride"></li>');
-            $(chargeLi).text("CIRCLECI: brandfolder-production deployed");
+            $(chargeLi).text("CIRCLECI: production deployed");
             $('#charges').prepend(chargeLi);
             document.getElementById('choochoo').play();
         });
 
         socket.on('trainCrashed', function (data) {
             var chargeLi = $('<li class="train-ride"></li>');
-            $(chargeLi).text("CIRCLECLI: FAILED deploying brandfolder-production");
+            $(chargeLi).text("CIRCLECLI: FAILED deploying production");
             $('#charges').prepend(chargeLi);
             document.getElementById('crashed').play();
         });
+
+        socket.on('applause', function (data) {
+            var chargeLi = $('<li class="train-ride"></li>');
+            $(chargeLi).text("Yay!");
+            $('#charges').prepend(chargeLi);
+            document.getElementById('applause').play();
+        });        
 
         socket.on('deploy', function (data) {
             var chargeLi = $('<li class="train-ride"></li>');
@@ -168,6 +175,9 @@
           <source src="audio/denied.wav" type="audio/wave">
           <source src="audio/denied.mp3" type="audio/mpeg">
         </audio></h1>
+        <h1>Applause: <audio id="applause" preload="auto" controls="yes">
+          <source src="audio/applause.mp3" type="audio/mpeg">
+        </audio></h1>        
 
     </center>
     <br>
