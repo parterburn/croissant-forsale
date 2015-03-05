@@ -50,8 +50,14 @@ app.get('/any-url', function(request, response){
 });
 
 app.get('/speak', function(request, response){
+  var show_text;
+  if (request.query.user_name) {
+    show_text = "@" + request.query.user_name + ": " + request.query.text;
+  } else {
+    show_text = request.query.text;
+  }
   io.emit('speak', request.query.text);
-  response.send('Now listen...');
+  response.send(request.query.text);
 });
 
 io.on('connection', function (socket) {
