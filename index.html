@@ -92,7 +92,7 @@
             $(chargeLi).text("Yay!");
             $('#charges').prepend(chargeLi);
             document.getElementById('applause').play();
-        });        
+        });
 
         socket.on('deploy', function (data) {
             var chargeLi = $('<li class="train-ride"></li>');
