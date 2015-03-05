@@ -50,6 +50,8 @@ app.get('/any-url', function(request, response){
 });
 
 app.get('/speak', function(request, response){
+  console.log(request);
+  console.log(request.query);
   console.log(request.query.words);
   io.emit('speak', request.query.words);
   response.send('Now listen...');
