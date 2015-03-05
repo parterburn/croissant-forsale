@@ -32,6 +32,11 @@ app.get('/denied', function(request, response){
   response.send('OK');
 });
 
+app.get('/choo-choo', function(request, response){
+  io.emit('trainDone', "Choo-choo!");
+  response.send('OK');
+});
+
 app.post('/circle-webhook', function(request, response){
   if (request.body.payload.branch === "master") {
     if (request.body.payload.outcome === "success") {
