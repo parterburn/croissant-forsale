@@ -4,8 +4,15 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var bodyParser = require('body-parser');
 var basicAuth = require('node-basicauth');
+var password;
+if (process.env.PASSWORD) {
+  password = process.env.PASSWORD;
+} else {
+  password = "test";
+}
 
-app.use(basicAuth({ "cha-ching" : process.env.PASSWORD }));
+
+app.use(basicAuth({ "cha-ching" : password }));
 app.use(express.static(__dirname));
 app.use(bodyParser.json());
 

@@ -1,6 +1,17 @@
-A simple app written in node.js (and, marginally designed to run on Heroku).
+A simple app written in node.js (and, marginally designed to run on Heroku) to play sound effects on different webhook triggers to any other machine running the same webpage.
 
-This listens for charge.succeeded & charge.failed webhooks from Stripe, and then plays a sound in any browser connected to the server.
+Some built-in functions:
+* Stripe Webhook for charge.succeeded & charge.failed sound effects
+* Input any public URL to a sound effect
+* Sound effects: Choo Choo, Failed, Cash Register, and Crash
+* Hook up to Heroku for automatic refreshes
+* Hook up to CircleCi to let the team know when a new deploy happens
+* Speak any text using the Google Translate API
+
+For extra fun, hook it up to a Raspberry Pi and add Slash Commands in your Slack so that you can do things like:
+* /speak Hello World
+* /sound denied
+* /volume 0.5
 
 For info on setting up on heroku, see this tutorial:
 http://devcenter.heroku.com/articles/node-js
@@ -14,10 +25,13 @@ node server.js
 Open in browser with:
 http://localhost:8080
 
+The default login is:
+Username: cha-ching
+Password: test
+
 Add your stripe api key to your env:
-heroku config:add USERNAME=<YOUR USERNAME> PASSWORD=<YOUR PASSWORD>
+heroku config:add PASSWORD=<YOUR PASSWORD>
 
 Configure your stripe webhooks here:
 https://manage.stripe.com/#account/webhooks
-
 to http://username:password@{YOUR_SERVER}/stripe-webhook
