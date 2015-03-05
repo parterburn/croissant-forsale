@@ -118,7 +118,7 @@
         });
 
         socket.on('speak', function (text) {
-            var url = "http://translate.google.com/translate_tts?ie=UTF-8&q="+text+"&tl=en&total=1&idx=0&textlen=23&prev=input";
+            var url = "http://translate.google.com/translate_tts?ie=UTF-8&q="+encodeURIComponent(text)+"&tl=en&total=1&idx=0&textlen=23&prev=input";
             var audio = new Audio(url);
             audio.controls = true;
             var chargeLi = $('<li class="any-player"></li>');
