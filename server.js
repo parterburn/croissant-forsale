@@ -56,6 +56,7 @@ app.get('/speak', function(request, response){
 });
 
 app.post('/speak', function(request, response){
+  console.log(request);
   console.log(request.body.text);
   io.emit('speak', request.body.text);
   response.send('Now listen...');
