@@ -24,7 +24,7 @@ app.post('/stripe-webhook', function(request, response){
 
 app.get('/volume', function(request, response){
   io.emit('volume', request.query.text);
-  response.send('OK');
+  response.send('Volume set to ' + request.query.text);
 });
 
 app.get('/payment', function(request, response){
