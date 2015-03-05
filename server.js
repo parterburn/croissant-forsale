@@ -22,6 +22,16 @@ app.post('/stripe-webhook', function(request, response){
   response.send('OK');
 });
 
+app.get('/payment', function(request, response){
+  io.emit('chargeSucceeded', "Cha-ching!");
+  response.send('OK');
+});
+
+app.get('/denied', function(request, response){
+  io.emit('chargeFailed', "Denied!");
+  response.send('OK');
+});
+
 app.post('/circle-webhook', function(request, response){
   if (request.body.payload.branch === "master") {
     if (request.body.payload.outcome === "success") {
