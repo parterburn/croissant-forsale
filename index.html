@@ -135,20 +135,24 @@
             $('#charges').prepend(chargeLi);
         });
 
-        var volume;
+        var old_volume;
         socket.on('volume', function (new_volume) {
             if (new_volume === "mute") {
-                volume = 0;
+                play_volume = 0;
             } else if (new_volume === "unmute") {
-                volume = volume || new_volume;
+                play_volume = old_volume || 1;
+                old_volume = play_volume;
             } else if (new_volume === "up") {
-                volume = $('audio').prop('volume') + 0.2;
+                play_volume = $('audio').prop('volume') + 0.2;
+                old_volume = play_volume;
             } else if (new_volume === "down") {
-                volume = $('audio').prop('volume') - 0.2;
+                play_volume = $('audio').prop('volume') - 0.2;
+                old_volume = play_volume;
             } else {
-                volume = parseFloat(new_volume.replace(/[^0-9\.]+/g,''));
+                play_volume = parseFloat(new_volume.replace(/[^0-9\.]+/g,''));
+                old_volume = play_volume;
             }
-            $('audio').prop('volume',volume);
+            $('audio').prop('volume',play_volume);
         });
 
         // remove elements so the page doesn't get too big in memory
