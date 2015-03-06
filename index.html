@@ -104,10 +104,10 @@
             }
             var audio = new Audio(decodeURIComponent(url));
             audio.controls = true;
-            if ($('audio').first().prop('volume')) { audio.volume = $('audio').first().prop('volume'); }
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#charges').prepend(chargeLi);
+            if ($('audio').first().prop('volume')) { $(".any-player audio")[0].volume = $('audio').first().prop('volume'); }            
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Played: "+url);
@@ -118,10 +118,10 @@
             var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=en-us&q="+encodeURIComponent(text);
             var audio = new Audio(url);
             audio.controls = true;
-            if ($('audio').first().prop('volume')) { audio.volume = $('audio').first().prop('volume'); }
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#charges').prepend(chargeLi);
+            if ($('audio').first().prop('volume')) { $(".any-player audio")[0].volume = $('audio').first().prop('volume'); }
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Spoke: "+text);
