@@ -20,11 +20,8 @@ app.post('/stripe-webhook', function(request, response){
   if (request.body.type === 'charge.succeeded') {
     io.emit('chargeSucceeded', request.body.data.object);
   }
-  if (request.body.type === 'charge.failed') {
+  if (request.body.type === 'charge.failed' || request.body.type === 'charge.refunded') {
     io.emit('chargeFailed', request.body.data.object);
-  }
-  if (request.body.type === 'charge.refunded') {
-    io.emit('chargeRefunded', request.body.data.object);
   }
   response.send('OK');
 });
@@ -63,7 +60,7 @@ app.get('/crashed', function(request, response){
 app.post('/circle-webhook', function(request, response){
   if (request.body.payload.branch === "master") {
     if (request.body.payload.outcome === "success") {
-      io.emit('trainDone', "Choo Choo");    
+      io.emit('trainDone', "Choo Choo");
     } else {
       io.emit('trainCrashed', "Choo Choo");
     }
@@ -84,12 +81,25 @@ app.get('/refresh', function(request, response){
 app.get('/any-url', function(request, response){
   console.log(request.query);
   var url;
+  
   if (request.query.text) {
     url = request.query.text;
   } else {
     url = request.query.url;
   }
-  io.emit('anyURL', url);
+
+  if (url === "cha-ching" || url === "payment" || url === "cha ching") {
+    io.emit('chargeSucceeded', "Cha-ching!");
+  } else if (url === "choo-choo" || url === "choo choo" || url === "train") {
+    io.emit('trainDone', "Choo Choo");
+  } else if (url === "crash") {
+    io.emit('trainCrashed', "Choo Choo");
+  } else if (url === "denied") {
+    io.emit('chargeFailed', request.body.data.object);
+  } else {
+    io.emit('anyURL', url);
+  }
+  
   response.send(url);
 });
 

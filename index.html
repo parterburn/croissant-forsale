@@ -61,14 +61,7 @@
 
         socket.on('chargeFailed', function (charge) {
             var chargeLi = $('<li class="failed-charge"></li>');
-            $(chargeLi).text("CHARGE FAILED for $"+(charge.amount/100).toFixed(2));
-            $('#charges').prepend(chargeLi);
-            document.getElementById('denied').play();
-        });
-
-        socket.on('chargeRefunded', function (charge) {
-            var chargeLi = $('<li class="failed-charge"></li>');
-            $(chargeLi).text("CHARGE REFUNDED for $"+(charge.amount/100).toFixed(2));
+            $(chargeLi).text("CHARGE FAILED/REFUNDED for $"+(charge.amount/100).toFixed(2));
             $('#charges').prepend(chargeLi);
             document.getElementById('denied').play();
         });
