@@ -88,14 +88,16 @@ app.get('/any-url', function(request, response){
     url = request.query.url;
   }
 
-  if (url === "cha-ching" || url === "payment" || url === "cha ching") {
+  if (url === "applause") {
+    io.emit('applause', "Yay!");
+  } else if (url === "cha-ching" || url === "payment" || url === "cha ching") {
     io.emit('chargeSucceeded', "Cha-ching!");
   } else if (url === "choo-choo" || url === "choo choo" || url === "train") {
-    io.emit('trainDone', "Choo Choo");
+    io.emit('trainDone', "choo choo");
   } else if (url === "crash") {
-    io.emit('trainCrashed', "Choo Choo");
+    io.emit('trainCrashed', "crash");
   } else if (url === "denied") {
-    io.emit('chargeFailed', request.body.data.object);
+    io.emit('chargeFailed', "Denied");
   } else {
     io.emit('anyURL', url);
   }
