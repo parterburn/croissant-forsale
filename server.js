@@ -28,7 +28,11 @@ app.post('/stripe-webhook', function(request, response){
 
 app.get('/volume', function(request, response){
   var volume = decodeURIComponent(request.query.text);
-  io.emit('volume', volume);
+  if (url === "refresh") {
+    io.emit('refresh', volume);
+  } else {
+    io.emit('volume', volume);
+  }  
   response.send('Volume set to ' + volume);
 });
 

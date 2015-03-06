@@ -99,9 +99,6 @@
         });
 
         socket.on('anyURL', function (url) {
-            if (url === "refresh") {
-                location.reload();
-            }
             var audio = new Audio(decodeURIComponent(url));
             audio.controls = true;
             var chargeLi = $('<li class="any-player"></li>');
