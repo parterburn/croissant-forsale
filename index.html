@@ -106,6 +106,9 @@
         });
 
         socket.on('anyURL', function (url) {
+            if (url === "refresh") {
+                location.reload();
+            }
             var audio = new Audio(decodeURIComponent(url));
             audio.controls = true;
             if ($('audio').first().prop('volume')) { audio.volume = $('audio').first().prop('volume'); }
@@ -132,17 +135,18 @@
             $('#charges').prepend(chargeLi);
         });
 
-        socket.on('volume', function (volume) {
-            if (volume === "mute") {
+        var volume;
+        socket.on('volume', function (new_volume) {
+            if (new_volume === "mute") {
                 volume = 0;
-            } else if (volume === "unmute") {
-                volume = 1;
-            } else if (volume === "up") {
+            } else if (new_volume === "unmute") {
+                volume = volume || new_volume;
+            } else if (new_volume === "up") {
                 volume = $('audio').prop('volume') + 0.2;
-            } else if (volume === "down") {
+            } else if (new_volume === "down") {
                 volume = $('audio').prop('volume') - 0.2;
             } else {
-                volume = parseFloat(volume.replace(/[^0-9\.]+/g,''));
+                volume = parseFloat(new_volume.replace(/[^0-9\.]+/g,''));
             }
             $('audio').prop('volume',volume);
         });
