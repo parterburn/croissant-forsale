@@ -137,6 +137,7 @@
 
         var old_volume;
         socket.on('volume', function (new_volume) {
+            var play_volume;
             if (new_volume === "mute") {
                 play_volume = 0;
             } else if (new_volume === "unmute") {
