@@ -90,7 +90,7 @@
         socket.on('deploy', function (data) {
             var chargeLi = $('<li class="train-ride"></li>');
             $(chargeLi).text("New deploy; refreshing in 30 seconds");
-            $('#charges').prepend(chargeLi);            
+            $('#charges').prepend(chargeLi);  
             setTimeout(function() { location.reload(); }, 30000);
         });
 
@@ -146,10 +146,15 @@
             $('audio').prop('volume',play_volume);
         });
 
-        // remove elements so the page doesn't get too big in memory
+        // remove elements & ping spakers every 5 minutes so the page doesn't get too big in memory / speakers don't turn off
         setTimeout(function() {
             $("li").remove();
-        }, 30000);
+            var $el = $('#crashed');
+            var old_volume = $el.prop('volume');
+            $el.prop('volume', 0.0001);
+            document.getElementById('crashed').play();
+            $el.prop('volume', old_volume);            
+        }, 300000);
 
     </script>
 </head>
