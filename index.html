@@ -150,14 +150,9 @@
             $('audio').prop('volume',play_volume);
         });
 
-        // remove elements & ping spakers every 5 minutes so the page doesn't get too big in memory / speakers don't turn off
+        // remove elements every 5 minutes
         setTimeout(function() {
             $("li").remove();
-            var $el = $('#crashed');
-            var old_volume = $el.prop('volume');
-            $el.prop('volume', 0.0001);
-            document.getElementById('crashed').play();
-            $el.prop('volume', old_volume);            
         }, 300000);
 
     </script>
