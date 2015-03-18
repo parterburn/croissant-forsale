@@ -56,7 +56,11 @@
             var chargeLi = $('<li class="successful-charge"></li>');
             $(chargeLi).text("CHARGE SUCCESSFUL for $"+(charge.amount/100).toFixed(2));
             $('#charges').prepend(chargeLi);
-            document.getElementById('cash_register').play();
+            if (charge.amount > 30000) {
+                document.getElementById('money_money').play();
+            } else {
+                document.getElementById('cash_register').play();
+            }
         });
 
         socket.on('chargeFailed', function (charge) {
@@ -179,6 +183,7 @@
             </h1>
         </form>
         <a href="/any-url?url=%2Faudio%2Fcash_register.mp3">Play Cha Ching</a><br>
+        <a href="/any-url?url=%2Faudio%2Fmoney.mp3">Play Money Money</a><br>
         <a href="/any-url?url=%2Faudio%2Fdenied.mp3">Play Denied</a><br>
         <a href="/any-url?url=%2Faudio%2Fchoochoo.mp3">Play Choo Choo</a><br>
         <a href="/any-url?url=%2Faudio%2Fcrash.mp3">Play Crash</a><br>
@@ -198,6 +203,10 @@
           <source src="audio/cash_register.wav" type="audio/wave">
           <source src="audio/cash_register.mp3" type="audio/mpeg">
         </audio></h1>
+        <h1>Money Money: <audio id="money_money" preload="auto" controls="yes">
+          <source src="audio/money.wav" type="audio/wave">
+          <source src="audio/money.mp3" type="audio/mpeg">
+        </audio></h1>        
         <h1>Fail: <audio id="denied" preload="auto" controls="yes">
           <source src="audio/denied.wav" type="audio/wave">
           <source src="audio/denied.mp3" type="audio/mpeg">
