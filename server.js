@@ -19,6 +19,12 @@ app.get('/random', function(request, response){
   response.send("Just random");
 });
 
+app.get('/random_french', function(request, response){
+  console.log(request.query);
+  io.emit('randomFrench', "Just random");
+  response.send("Just random");
+});
+
 app.get('/speak_french', function(request, response){
   console.log(request.query);
   io.emit('speakFrench', request.query.text);
