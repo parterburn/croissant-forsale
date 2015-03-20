@@ -88,6 +88,7 @@
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#sayings').prepend(chargeLi);
+            $(".any-player audio")[0].load();
             $(".any-player audio")[0].play();
 
             chargeLi = $('<li class="play-anything"></li>');
@@ -117,6 +118,7 @@
 
             $('#sayings').prepend(chargeLi);
             var refreshIntervalId = setInterval(change_image, 250);
+            $(".any-player audio")[0].load();
             $(".any-player audio")[0].play();
 
 
