@@ -100,11 +100,11 @@
         });
 
         function change_image() {
-            var url = document.getElementById('croissant').src;
+            var url = $('#croissant').attr("src");
             if (url == 'images/croissant-no-talk.png') {
-                document.getElementById('Change_Image').src = 'images/croissant-talk.png';
+                $('#croissant').attr("src","images/croissant-talk.png");
             } else {
-                document.getElementById('Change_Image').src = 'images/croissant-no-talk.png';
+                $('#croissant').attr("src","images/croissant-no-talk.png");
             }
         }
 
