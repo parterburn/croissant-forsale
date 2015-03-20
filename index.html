@@ -44,7 +44,8 @@
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text(text);
             $('#sayings').prepend(chargeLi);
-            setInterval(change_image, 250);
+            var refreshIntervalId = setInterval(change_image, 250);
+            setTimeout(function() { clearInterval(refreshIntervalId); }, 2000);
 
             console.log(""+text);
         });
@@ -60,7 +61,8 @@
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text(text);
             $('#sayings').prepend(chargeLi);
-            setInterval(change_image, 250);
+            var refreshIntervalId = setInterval(change_image, 250);
+            setTimeout(function() { clearInterval(refreshIntervalId); }, 2000);
 
             console.log(""+text);
         });
@@ -78,7 +80,8 @@
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text(""+text);
             $('#sayings').prepend(chargeLi);
-            setInterval(change_image, 250);
+            var refreshIntervalId = setInterval(change_image, 250);
+            setTimeout(function() { clearInterval(refreshIntervalId); }, 2000);
 
             console.log("Said "+text);
         }); 
@@ -97,7 +100,8 @@
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text(text);
             $('#sayings').prepend(chargeLi);
-            setInterval(change_image, 250);
+            var refreshIntervalId = setInterval(change_image, 250);
+            setTimeout(function() { clearInterval(refreshIntervalId); }, 2000);
 
             console.log(""+text);
         });                
