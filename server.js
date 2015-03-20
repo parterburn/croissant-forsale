@@ -13,6 +13,12 @@ app.get('/speak', function(request, response){
   response.send(request.query.text);
 });
 
+app.get('/random', function(request, response){
+  console.log(request.query);
+  io.emit('random', "Just random");
+  response.send("Just random");
+});
+
 app.get('/speak_french', function(request, response){
   console.log(request.query);
   io.emit('speakFrench', request.query.text);

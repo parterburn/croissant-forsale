@@ -87,6 +87,22 @@
             $("#dance").addClass("rotating");
         });
 
+        socket.on('random', function () {
+            var sayings = ["What what in the butt?", "Making money", "Saying things you know it.", "Let's try this out."];            
+            var text = sayings[Math.floor(Math.random()*sayings.length)];
+            var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=fr&q="+encodeURIComponent(text);
+            var audio = new Audio(url);
+            audio.controls = true;
+            var chargeLi = $('<li class="any-player"></li>');
+            chargeLi.html(audio.outerHTML);
+            $('#sayings').prepend(chargeLi);
+            $(".any-player audio")[0].play();
+            chargeLi = $('<li class="play-anything"></li>');
+            $(chargeLi).text("Spoke: "+text);
+            $('#charges').prepend(chargeLi);
+            $("#dance").addClass("rotating");
+        });        
+
         socket.on('refresh', function (data) {
             location.reload();
         });
