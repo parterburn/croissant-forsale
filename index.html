@@ -27,6 +27,19 @@
             $('#charges').prepend(chargeLi);
         });
 
+        socket.on('speakFrench', function (text) {
+            var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=fr&q="+encodeURIComponent(text);
+            var audio = new Audio(url);
+            audio.controls = true;
+            var chargeLi = $('<li class="any-player"></li>');
+            chargeLi.html(audio.outerHTML);
+            $('#sayings').prepend(chargeLi);
+            $(".any-player audio")[0].play();
+            chargeLi = $('<li class="play-anything"></li>');
+            $(chargeLi).text("Spoke: "+text);
+            $('#charges').prepend(chargeLi);
+        });        
+
     </script>
 </head>
 
@@ -42,6 +55,14 @@
             <input type="submit" value="Say">
             </h1>
         </form>
+
+        <form method="get" action="/speak_french">
+            <h1>
+            Speak French:  
+            <input type="text" name="text" placeholder="Hello World">
+            <input type="submit" value="Say">
+            </h1>
+        </form>        
         <br>
         <a href="/refresh">Refresh All Receivers</a><br><br>
         <a href="/volume?text=0.5">Volume</a>
