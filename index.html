@@ -24,6 +24,10 @@
           background-size: cover;
         }
 
+        audio {
+            margin-left: -100000px;
+        }
+
     </style>
     <script type="text/javascript">
         var host = location.origin.replace(/^http/, 'ws');
@@ -38,7 +42,7 @@
             $('#sayings').prepend(chargeLi);
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
-            $(chargeLi).text("Spoke: "+text);
+            $(chargeLi).text(text);
             $('#sayings').prepend(chargeLi);
             setInterval(change_image, 250);
 
@@ -54,7 +58,7 @@
             $('#sayings').prepend(chargeLi);
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
-            $(chargeLi).text("Spoke: "+text);
+            $(chargeLi).text(text);
             $('#sayings').prepend(chargeLi);
             setInterval(change_image, 250);
 
@@ -90,7 +94,7 @@
             $('#sayings').prepend(chargeLi);
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
-            $(chargeLi).text("Spoke: "+text);
+            $(chargeLi).text(text);
             $('#sayings').prepend(chargeLi);
             setInterval(change_image, 250);
 
