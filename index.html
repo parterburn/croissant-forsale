@@ -82,7 +82,7 @@
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#sayings').prepend(chargeLi);
-            $(".any-player audio")[0].attr("preload","auto");
+            $(".any-player audio")[0].prop("preload","auto");
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text(""+text);
@@ -103,7 +103,7 @@
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#sayings').prepend(chargeLi);
-            $(".any-player audio")[0].attr("preload","auto");            
+            $(".any-player audio")[0].prop("preload","auto");
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text(text);
