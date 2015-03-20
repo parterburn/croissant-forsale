@@ -22,51 +22,6 @@
           background-size: cover;
         }
 
-        #dance {
-            width: 700px;
-            height: auto;
-        }
-
-        @-webkit-keyframes rotating /* Safari and Chrome */ {
-          from {
-            -ms-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            -webkit-transform: rotate(0deg);
-            -o-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          to {
-            -ms-transform: rotate(360deg);
-            -moz-transform: rotate(360deg);
-            -webkit-transform: rotate(360deg);
-            -o-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
-        }
-        @keyframes rotating {
-          from {
-            -ms-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            -webkit-transform: rotate(0deg);
-            -o-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          to {
-            -ms-transform: rotate(360deg);
-            -moz-transform: rotate(360deg);
-            -webkit-transform: rotate(360deg);
-            -o-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
-        }
-        .rotating {
-          -webkit-animation: rotating 2s linear infinite;
-          -moz-animation: rotating 2s linear infinite;
-          -ms-animation: rotating 2s linear infinite;
-          -o-animation: rotating 2s linear infinite;
-          animation: rotating 2s linear infinite;
-        }
-
     </style>
     <script type="text/javascript">
         var host = location.origin.replace(/^http/, 'ws');
@@ -83,7 +38,8 @@
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Spoke: "+text);
             $('#sayings').prepend(chargeLi);
-            $("#dance").addClass("rotating");
+            setInterval(change_image, 2000);
+
             console.log(""+text);
         });
 
@@ -98,7 +54,8 @@
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Spoke: "+text);
             $('#sayings').prepend(chargeLi);
-            $("#dance").addClass("rotating");
+            setInterval(change_image, 2000);
+
             console.log(""+text);
         });
 
@@ -116,7 +73,8 @@
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text(""+text);
             $('#sayings').prepend(chargeLi);
-            $("#dance").addClass("rotating");
+            setInterval(change_image, 2000);
+
             console.log("Said "+text);
         }); 
 
@@ -132,7 +90,8 @@
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Spoke: "+text);
             $('#sayings').prepend(chargeLi);
-            $("#dance").addClass("rotating");
+            setInterval(change_image, 2000);
+
             console.log(""+text);
         });                
 
@@ -140,12 +99,21 @@
             location.reload();
         });
 
+        function change_image() {
+            var url = document.getElementById('croissant').src;
+            if (url == 'images/croissant-no-talk.png') {
+                document.getElementById('Change_Image').src = 'images/croissant-talk.png';
+            } else {
+                document.getElementById('Change_Image').src = 'images/croissant-no-talk.png';
+            }
+        }
+
     </script>
 </head>
 
 <body>
     <br><br>
-    <center><img src="images/filler.jpg" id="dance"></center>
+    <center><img src="images/croissant-no-talk.png" id="croissant"></center>
     <ul id="sayings"></ul>
 </body>
 
