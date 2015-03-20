@@ -16,7 +16,7 @@
         <br>
         <br>
         <br>
-        <form method="get" action="/speak">
+        <form method="get" action="/speak" target="sender">
             <h1>
             Speak: 
             <input type="text" name="text" placeholder="Hello World">
@@ -24,7 +24,7 @@
             </h1>
         </form>
 
-        <form method="get" action="/speak_french">
+        <form method="get" action="/speak_french" target="sender">
             <h1>
             Speak French:  
             <input type="text" name="text" placeholder="Hello World">
@@ -32,7 +32,9 @@
             </h1>
         </form>        
         <br>
-        <a href="/refresh">Refresh All Receivers</a><br><br>
+        <a href="/refresh" target="send">Refresh All Receivers</a><br><br>
+
+        <iframe src="" name="sender"></iframe>
 
     </center>
 
