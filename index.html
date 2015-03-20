@@ -84,6 +84,7 @@
             var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=fr&q="+encodeURIComponent(text).replace("%20", "+");
             var audio = new Audio(url);
             audio.controls = true;
+            audio.preload = "auto";
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#sayings').prepend(chargeLi);
@@ -106,6 +107,7 @@
             var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q="+encodeURIComponent(text).replace("%20", "+");
             var audio = new Audio(url);
             audio.controls = true;
+            audio.preload = "auto";
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#sayings').prepend(chargeLi);
