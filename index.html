@@ -9,111 +9,10 @@
         body {
             font-family: 'Lucida Grand', Helvetica, Arial, sans-serif;
         }
-        #charges {
-            margin: 20px;
-        }
-        .train-ride {
-            margin: 5px;
-        }
-        .play-anything {
-            margin: 5px;
-        }
-        .failed-charge {
-            color: darkRed;
-            margin: 5px;
-        }
-        .successful-charge {
-            color: darkGreen;
-            margin: 5px;
-        }
-        a {
-            display:inline-block;
-            margin:5px;
-            text-decoration: none;
-            color:#333333;
-        }
-        a:hover {
-            text-decoration: underline;
-            color:black;
-        }        
-        input {
-            border : solid 2px #DDDDDD;
-            border-radius : 3px;
-            moz-border-radius : 3px;
-            font-size : 20px;
-            color : #333333;
-            padding : 5px 10px;
-            background : whiteSmoke;
-        }
-        input[type=text] {
-            width: 320px;
-        }
     </style>
     <script type="text/javascript">
         var host = location.origin.replace(/^http/, 'ws');
         var socket = io(host);
-        socket.on('chargeSucceeded', function (charge) {
-            var chargeLi = $('<li class="successful-charge"></li>');
-            $(chargeLi).text("CHARGE SUCCESSFUL for $"+(charge.amount/100).toFixed(2));
-            $('#charges').prepend(chargeLi);
-            if (charge.amount > 30000) {
-                document.getElementById('money_money').play();
-            } else {
-                document.getElementById('cash_register').play();
-            }
-        });
-
-        socket.on('chargeFailed', function (charge) {
-            var chargeLi = $('<li class="failed-charge"></li>');
-            $(chargeLi).text("CHARGE FAILED/REFUNDED for $"+(charge.amount/100).toFixed(2));
-            $('#charges').prepend(chargeLi);
-            document.getElementById('denied').play();
-        });
-
-        socket.on('trainDone', function (charge) {
-            var chargeLi = $('<li class="train-ride"></li>');
-            $(chargeLi).text("CIRCLECI: production deployed");
-            $('#charges').prepend(chargeLi);
-            document.getElementById('choochoo').play();
-        });
-
-        socket.on('trainCrashed', function (data) {
-            var chargeLi = $('<li class="train-ride"></li>');
-            $(chargeLi).text("CIRCLECLI: FAILED deploying production");
-            $('#charges').prepend(chargeLi);
-            document.getElementById('crashed').play();
-        });
-
-        socket.on('applause', function (data) {
-            var chargeLi = $('<li class="train-ride"></li>');
-            $(chargeLi).text("Yay!");
-            $('#charges').prepend(chargeLi);
-            document.getElementById('applause').play();
-        });
-
-        socket.on('deploy', function (data) {
-            var chargeLi = $('<li class="train-ride"></li>');
-            $(chargeLi).text("New deploy; refreshing in 30 seconds");
-            $('#charges').prepend(chargeLi);  
-            setTimeout(function() { location.reload(); }, 30000);
-        });
-
-        socket.on('refresh', function (data) {
-            location.reload();
-        });
-
-        socket.on('anyURL', function (url) {
-            var audio = new Audio(decodeURIComponent(url));
-            audio.controls = true;
-            var chargeLi = $('<li class="any-player"></li>');
-            chargeLi.html(audio.outerHTML);
-            $('#charges').prepend(chargeLi);
-            if ($('audio').first().prop('volume')) { $(".any-player audio")[0].volume = $('audio').first().prop('volume'); }            
-            $(".any-player audio")[0].play();
-            chargeLi = $('<li class="play-anything"></li>');
-            $(chargeLi).text("Played: "+url);
-            $('#charges').prepend(chargeLi);            
-        });
 
         socket.on('speak', function (text) {
             var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=en-us&q="+encodeURIComponent(text);
@@ -121,39 +20,12 @@
             audio.controls = true;
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
-            $('#charges').prepend(chargeLi);
-            if ($('audio').first().prop('volume')) { $(".any-player audio")[0].volume = $('audio').first().prop('volume'); }
+            $('#sayings').prepend(chargeLi);
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Spoke: "+text);
             $('#charges').prepend(chargeLi);
         });
-
-        var old_volume;
-        socket.on('volume', function (new_volume) {
-            var play_volume;
-            if (new_volume === "mute") {
-                play_volume = 0;
-            } else if (new_volume === "unmute") {
-                play_volume = old_volume || 1;
-                old_volume = play_volume;
-            } else if (new_volume === "up") {
-                play_volume = $('audio').prop('volume') + 0.2;
-                old_volume = play_volume;
-            } else if (new_volume === "down") {
-                play_volume = $('audio').prop('volume') - 0.2;
-                old_volume = play_volume;
-            } else {
-                play_volume = parseFloat(new_volume.replace(/[^0-9\.]+/g,''));
-                old_volume = play_volume;
-            }
-            $('audio').prop('volume',play_volume);
-        });
-
-        // remove elements every 5 minutes
-        setTimeout(function() {
-            $("li").remove();
-        }, 300000);
 
     </script>
 </head>
@@ -163,13 +35,6 @@
         <br>
         <br>
         <br>
-        <form method="get" action="/any-url">
-            <h1>
-                Play: 
-                <input type="text" name="url" placeholder="https://url-to/sound.mp3">
-                <input type="submit" value="Play">
-            </h1>
-        </form>
         <form method="get" action="/speak">
             <h1>
             Speak: 
@@ -177,42 +42,13 @@
             <input type="submit" value="Say">
             </h1>
         </form>
-        <a href="/any-url?url=%2Faudio%2Fcash_register.mp3">Play Cha Ching</a><br>
-        <a href="/any-url?url=%2Faudio%2Fmoney.mp3">Play Money Money</a><br>
-        <a href="/any-url?url=%2Faudio%2Fdenied.mp3">Play Denied</a><br>
-        <a href="/any-url?url=%2Faudio%2Fchoochoo.mp3">Play Choo Choo</a><br>
-        <a href="/any-url?url=%2Faudio%2Fcrash.mp3">Play Crash</a><br>
         <br>
         <a href="/refresh">Refresh All Receivers</a><br><br>
-        <a href="/volume?text=0.5">Volume</a>   
-
-        <h1>Choo Choo: <audio id="choochoo" preload="auto" controls="yes">
-          <source src="audio/choochoo.wav" type="audio/wave">
-          <source src="audio/choochoo.mp3" type="audio/mpeg">
-        </audio></h1>
-        <h1>Crash: <audio id="crashed" preload="auto" controls="yes">
-          <source src="audio/crash.wav" type="audio/wave">
-          <source src="audio/crash.mp3" type="audio/mpeg">
-        </audio></h1>
-        <h1>Cha-ching: <audio id="cash_register" preload="auto" controls="yes">
-          <source src="audio/cash_register.wav" type="audio/wave">
-          <source src="audio/cash_register.mp3" type="audio/mpeg">
-        </audio></h1>
-        <h1>Money Money: <audio id="money_money" preload="auto" controls="yes">
-          <source src="audio/money.wav" type="audio/wave">
-          <source src="audio/money.mp3" type="audio/mpeg">
-        </audio></h1>        
-        <h1>Fail: <audio id="denied" preload="auto" controls="yes">
-          <source src="audio/denied.wav" type="audio/wave">
-          <source src="audio/denied.mp3" type="audio/mpeg">
-        </audio></h1>
-        <h1>Applause: <audio id="applause" preload="auto" controls="yes">
-          <source src="audio/applause.mp3" type="audio/mpeg">
-        </audio></h1>        
+        <a href="/volume?text=0.5">Volume</a>
 
     </center>
     <br>
-    <ul id="charges"></ul>
+    <ul id="sayings"></ul>
 </body>
 
 </html>
