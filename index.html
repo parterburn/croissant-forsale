@@ -109,9 +109,8 @@
             audio.controls = true;
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
-            $(".any-player audio")[0].prop("preload","auto");
-
             $('#sayings').prepend(chargeLi);
+            $(".any-player audio")[0].prop("preload","auto");            
 
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text(text);
