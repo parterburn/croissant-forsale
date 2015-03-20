@@ -45,7 +45,7 @@
         var socket = io(host);
 
         socket.on('speak', function (text) {
-            var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q="+encodeURIComponent(text).replace("%20", "+");
+            var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=en-us&q="+encodeURIComponent(text).replace("%20", "+");
             var audio = new Audio(url);
             audio.controls = true;
             var chargeLi = $('<li class="any-player"></li>');
@@ -88,7 +88,6 @@
             var chargeLi = $('<li class="any-player"></li>');
             chargeLi.html(audio.outerHTML);
             $('#sayings').prepend(chargeLi);
-            $(".any-player audio")[0].load();
             $(".any-player audio")[0].play();
 
             chargeLi = $('<li class="play-anything"></li>');
@@ -105,7 +104,7 @@
             var text = eng_sayings[Math.floor(Math.random() * eng_sayings.length)];
             console.log(text);
 
-            var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q="+encodeURIComponent(text).replace("%20", "+");
+            var url = "http://translate.google.com/translate_tts?ie=UTF-8&tl=en-us&q="+encodeURIComponent(text).replace("%20", "+");
             var audio = new Audio(url);
             audio.controls = true;
             audio.preload = "auto";
@@ -118,7 +117,6 @@
 
             $('#sayings').prepend(chargeLi);
             var refreshIntervalId = setInterval(change_image, 250);
-            $(".any-player audio")[0].load();
             $(".any-player audio")[0].play();
 
 
