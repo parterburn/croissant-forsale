@@ -82,9 +82,9 @@
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Spoke: "+text);
-            $('#charges').prepend(chargeLi);
+            $('#sayings').prepend(chargeLi);
             $("#dance").addClass("rotating");
-            console.log("Said "+text);
+            console.log(""+text);
         });
 
         socket.on('speakFrench', function (text) {
@@ -97,9 +97,9 @@
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Spoke: "+text);
-            $('#charges').prepend(chargeLi);
+            $('#sayings').prepend(chargeLi);
             $("#dance").addClass("rotating");
-            console.log("Said "+text);
+            console.log(""+text);
         });
 
         var sayings = ["What what in the butt?", "Making money", "Saying things you know it.", "Let's try this out."];
@@ -114,8 +114,8 @@
             $('#sayings').prepend(chargeLi);
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
-            $(chargeLi).text("Spoke: "+text);
-            $('#charges').prepend(chargeLi);
+            $(chargeLi).text(""+text);
+            $('#sayings').prepend(chargeLi);
             $("#dance").addClass("rotating");
             console.log("Said "+text);
         }); 
@@ -131,9 +131,9 @@
             $(".any-player audio")[0].play();
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Spoke: "+text);
-            $('#charges').prepend(chargeLi);
+            $('#sayings').prepend(chargeLi);
             $("#dance").addClass("rotating");
-            console.log("Said "+text);
+            console.log(""+text);
         });                
 
         socket.on('refresh', function (data) {
