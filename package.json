@@ -1,6 +1,10 @@
 {
   "name": "croissant-forsale",
   "version": "0.0.5",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/parterbur/croisant-forsale.git"
+  },
   "dependencies": {
     "socket.io": "latest",
     "express": "latest",
