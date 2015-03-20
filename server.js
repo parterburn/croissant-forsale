@@ -19,6 +19,11 @@ app.get('/speak_french', function(request, response){
   response.send(request.query.text);
 });
 
+app.get('/refresh', function(request, response){
+  io.emit('refresh', "Refreshed!");
+  response.send('OK');
+});
+
 io.on('connection', function (socket) {
   console.log("Connected!");
 });

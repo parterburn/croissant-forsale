@@ -41,7 +41,11 @@
             chargeLi = $('<li class="play-anything"></li>');
             $(chargeLi).text("Spoke: "+text);
             $('#charges').prepend(chargeLi);
-        });        
+        });
+
+        socket.on('refresh', function (data) {
+            location.reload();
+        });         
 
     </script>
 </head>
