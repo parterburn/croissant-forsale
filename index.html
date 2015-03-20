@@ -9,6 +9,9 @@
         body {
             font-family: 'Lucida Grand', Helvetica, Arial, sans-serif;
         }
+        #sayings {
+            display: none;
+        }
     </style>
     <script type="text/javascript">
         var host = location.origin.replace(/^http/, 'ws');
@@ -44,31 +47,6 @@
 </head>
 
 <body>
-    <center>
-        <br>
-        <br>
-        <br>
-        <form method="get" action="/speak">
-            <h1>
-            Speak: 
-            <input type="text" name="text" placeholder="Hello World">
-            <input type="submit" value="Say">
-            </h1>
-        </form>
-
-        <form method="get" action="/speak_french">
-            <h1>
-            Speak French:  
-            <input type="text" name="text" placeholder="Hello World">
-            <input type="submit" value="Say">
-            </h1>
-        </form>        
-        <br>
-        <a href="/refresh">Refresh All Receivers</a><br><br>
-        <a href="/volume?text=0.5">Volume</a>
-
-    </center>
-    <br>
     <ul id="sayings"></ul>
 </body>
 

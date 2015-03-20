@@ -1,5 +1,5 @@
 {
-  "name": "payments-webhook-node",
+  "name": "croissant-forsale",
   "version": "0.0.5",
   "dependencies": {
     "socket.io": "latest",
